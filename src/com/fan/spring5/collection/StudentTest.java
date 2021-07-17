@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
 /**
  * @author fans
  */
@@ -12,6 +13,13 @@ public class StudentTest {
     @Test
     public void test(){
         ApplicationContext context = new ClassPathXmlApplicationContext("collectionBean.xml");
+        Student student = context.getBean("student", Student.class);
+        System.out.println(student);
+    }
+
+    @Test
+    public void test2(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("collectionBean2.xml");
         Student student = context.getBean("student", Student.class);
         System.out.println(student);
     }
