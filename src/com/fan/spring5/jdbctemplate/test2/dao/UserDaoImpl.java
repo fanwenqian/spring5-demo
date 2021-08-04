@@ -62,4 +62,11 @@ public class UserDaoImpl implements UserDao {
         int[] ints = jdbcTemplate.batchUpdate(sql, batchArgs);
         System.out.println(Arrays.toString(ints));
     }
+
+    @Override
+    public void batchUpdate(List<Object[]> batchArgs) {
+        String sql = "update user set name = ?,status = ? where id = ?";
+        int[] ints = jdbcTemplate.batchUpdate(sql,batchArgs);
+        System.out.println(Arrays.toString(ints));
+    }
 }

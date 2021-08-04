@@ -78,4 +78,18 @@ public class UserTest {
         batchArgs.add(o3);
         userService.batchAdd(batchArgs);
     }
+
+    @Test
+    public void testBatchUpdate(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
+        UserService userService = context.getBean("userService", UserService.class);
+        List<Object[]> batchArgs = new ArrayList<>();
+        Object[] o1 = {"fan","study4","5"};
+        Object[] o2 = {"wen","study5","6"};
+        Object[] o3 = {"qian","study6","7"};
+        batchArgs.add(o1);
+        batchArgs.add(o2);
+        batchArgs.add(o3);
+        userService.batchUpdate(batchArgs);
+    }
 }
