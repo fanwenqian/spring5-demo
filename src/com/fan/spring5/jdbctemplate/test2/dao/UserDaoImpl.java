@@ -14,7 +14,16 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void add(User user) {
         String sql = "insert into user values (?,?,?)";
-        int update = jdbcTemplate.update(sql, user.getId(), user.getName(), user.getStatus());
+        Object[] args = {user.getId(), user.getName(), user.getStatus()};
+        int update = jdbcTemplate.update(sql, args);
+        System.out.println("影响了" + update + "行！");
+    }
+
+    @Override
+    public void update(User user) {
+        String sql = "update user set name = ?,status = ? where id = ?";
+        Object[] args = {user.getName(), user.getStatus(), user.getId()};
+        int update = jdbcTemplate.update(sql, args);
         System.out.println("影响了" + update + "行！");
     }
 }

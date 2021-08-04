@@ -12,11 +12,11 @@ public class UserService {
     @Resource
     private UserDao userDao;
 
-    public void add(){
-        User user = new User();
-        user.setId("1");
-        user.setName("fans");
-        user.setStatus("study");
+    public void add(User user){
         userDao.add(user);
+    }
+
+    public void update(User user){
+        userDao.update(user);
     }
 }
