@@ -5,21 +5,23 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 public class UserTest {
 
     @Test
-    public void testAdd(){
+    public void testAdd() {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
         UserService userService = context.getBean("userService", UserService.class);
         User user = new User();
-        user.setId("1");
-        user.setName("fans");
-        user.setStatus("study");
+        user.setId("2");
+        user.setName("fan.wenqian");
+        user.setStatus("studying");
         userService.add(user);
     }
 
     @Test
-    public void testUpdate(){
+    public void testUpdate() {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
         UserService userService = context.getBean("userService", UserService.class);
         User user = new User();
@@ -30,9 +32,35 @@ public class UserTest {
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
         UserService userService = context.getBean("userService", UserService.class);
         userService.delete("1");
+    }
+
+    @Test
+    public void testSelectCount() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
+        UserService userService = context.getBean("userService", UserService.class);
+        int i = userService.selectCount();
+        System.out.println("user表共" + i + "条数据");
+    }
+
+    @Test
+    public void testSelectUser(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
+        UserService userService = context.getBean("userService", UserService.class);
+        User user = userService.selectUser("1");
+        System.out.println(user.toString());
+    }
+
+    @Test
+    public void testSelectAllUser(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
+        UserService userService = context.getBean("userService", UserService.class);
+        List<User> users = userService.selectAllUser();
+        for (User user : users) {
+            System.out.println(user);
+        }
     }
 }

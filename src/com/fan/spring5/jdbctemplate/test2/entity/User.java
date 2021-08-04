@@ -29,4 +29,13 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
