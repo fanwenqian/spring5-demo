@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserTest {
@@ -62,5 +63,19 @@ public class UserTest {
         for (User user : users) {
             System.out.println(user);
         }
+    }
+
+    @Test
+    public void testBatchAdd(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
+        UserService userService = context.getBean("userService", UserService.class);
+        List<Object[]> batchArgs = new ArrayList<>();
+        Object[] o1 = {"5","fan","study1"};
+        Object[] o2 = {"6","wen","study2"};
+        Object[] o3 = {"7","qian","study3"};
+        batchArgs.add(o1);
+        batchArgs.add(o2);
+        batchArgs.add(o3);
+        userService.batchAdd(batchArgs);
     }
 }

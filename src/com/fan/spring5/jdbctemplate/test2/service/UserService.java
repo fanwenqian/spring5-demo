@@ -36,4 +36,8 @@ public class UserService {
     public List<User> selectAllUser() {
         return userDao.selectAllUser();
     }
+
+    public void batchAdd(List<Object[]> batchArgs){
+        userDao.batchAdd(batchArgs);
+    }
 }
