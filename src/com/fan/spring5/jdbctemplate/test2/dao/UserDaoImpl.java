@@ -26,4 +26,11 @@ public class UserDaoImpl implements UserDao {
         int update = jdbcTemplate.update(sql, args);
         System.out.println("影响了" + update + "行！");
     }
+
+    @Override
+    public void delete(String id) {
+        String sql = "delete from user where id = ?";
+        int update = jdbcTemplate.update(sql, id);
+        System.out.println("影响了" + update + "行！");
+    }
 }

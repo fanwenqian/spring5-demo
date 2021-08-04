@@ -19,4 +19,8 @@ public class UserService {
     public void update(User user){
         userDao.update(user);
     }
+
+    public void delete(String id){
+        userDao.delete(id);
+    }
 }

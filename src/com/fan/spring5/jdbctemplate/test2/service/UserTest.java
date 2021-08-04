@@ -28,4 +28,11 @@ public class UserTest {
         user.setStatus("learning");
         userService.update(user);
     }
+
+    @Test
+    public void testDelete(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
+        UserService userService = context.getBean("userService", UserService.class);
+        userService.delete("1");
+    }
 }
