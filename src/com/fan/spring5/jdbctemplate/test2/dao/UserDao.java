@@ -21,4 +21,6 @@ public interface UserDao {
     void batchAdd(List<Object[]> batchArgs);
 
     void batchUpdate(List<Object[]> batchArgs);
+
+    void batchDelete(List<Object[]> batchArgs);
 }

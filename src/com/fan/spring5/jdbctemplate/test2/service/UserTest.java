@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserTest {
@@ -48,7 +49,7 @@ public class UserTest {
     }
 
     @Test
-    public void testSelectUser(){
+    public void testSelectUser() {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
         UserService userService = context.getBean("userService", UserService.class);
         User user = userService.selectUser("1");
@@ -56,7 +57,7 @@ public class UserTest {
     }
 
     @Test
-    public void testSelectAllUser(){
+    public void testSelectAllUser() {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
         UserService userService = context.getBean("userService", UserService.class);
         List<User> users = userService.selectAllUser();
@@ -66,13 +67,13 @@ public class UserTest {
     }
 
     @Test
-    public void testBatchAdd(){
+    public void testBatchAdd() {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
         UserService userService = context.getBean("userService", UserService.class);
         List<Object[]> batchArgs = new ArrayList<>();
-        Object[] o1 = {"5","fan","study1"};
-        Object[] o2 = {"6","wen","study2"};
-        Object[] o3 = {"7","qian","study3"};
+        Object[] o1 = {"5", "fan", "study1"};
+        Object[] o2 = {"6", "wen", "study2"};
+        Object[] o3 = {"7", "qian", "study3"};
         batchArgs.add(o1);
         batchArgs.add(o2);
         batchArgs.add(o3);
@@ -80,16 +81,30 @@ public class UserTest {
     }
 
     @Test
-    public void testBatchUpdate(){
+    public void testBatchUpdate() {
         ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
         UserService userService = context.getBean("userService", UserService.class);
         List<Object[]> batchArgs = new ArrayList<>();
-        Object[] o1 = {"fan","study4","5"};
-        Object[] o2 = {"wen","study5","6"};
-        Object[] o3 = {"qian","study6","7"};
+        Object[] o1 = {"fan", "study4", "5"};
+        Object[] o2 = {"wen", "study5", "6"};
+        Object[] o3 = {"qian", "study6", "7"};
         batchArgs.add(o1);
         batchArgs.add(o2);
         batchArgs.add(o3);
         userService.batchUpdate(batchArgs);
+    }
+
+    @Test
+    public void testBatchDelete() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("jdbcTemplate.xml");
+        UserService userService = context.getBean("userService", UserService.class);
+        List<Object[]> batchArgs = new ArrayList<>();
+        Object[] o1 = {"5"};
+        Object[] o2 = {"6"};
+        Object[] o3 = {"7"};
+        batchArgs.add(o1);
+        batchArgs.add(o2);
+        batchArgs.add(o3);
+        userService.batchDelete(batchArgs);
     }
 }
